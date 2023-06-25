@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://0.0.0.0:27017/test')
+mongoose.connect('mongodb://0.0.0.0:27017/test2')
 
 const productSchema = new mongoose.Schema({
+  _id: Number,
   sku: String,
   description: String,
   instock: Number
@@ -18,6 +19,7 @@ const userSchema = new mongoose.Schema({
 const userModel = mongoose.model('users', userSchema)
 
 const orderSchema = new mongoose.Schema({
+  _id: Number,
   item:  String,
   price: Number,
   quantity: Number

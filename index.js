@@ -21,6 +21,66 @@ const authenticationCheck = async (req, res, next) => {
   }
 };
 
+app.post('/import', async (req, res) => {
+  const orders = [{
+    "_id": 1,
+    "item": "almonds",
+    "price": 12,
+    "quantity": 2
+  },
+  {
+    "_id": 2,
+    "item": "pecans",
+    "price": 20,
+    "quantity": 1
+  },
+  {
+    "_id": 3,
+    "item": "pecans",
+    "price": 20,
+    "quantity": 3
+  }];
+  const products = [{
+    "_id": 1,
+    "sku": "almonds",
+    "description": "product 1",
+    "instock": 120
+  },
+  {
+    "_id": 2,
+    "sku": "bread",
+    "description": "product 2",
+    "instock": 80
+  },
+  {
+    "_id": 3,
+    "sku": "cashews",
+    "description": "product 3",
+    "instock": 60
+  },
+  {
+    "_id": 4,
+    "sku": "pecans",
+    "description": "product 4",
+    "instock": 70
+  }];
+
+  const users = [{
+    "username": "admin",
+    "password": "MindX@2022"
+  },
+  {
+    "username": "alice",
+    "password": "MindX@2022"
+  }]
+
+  userModel.insertMany(users);
+
+  productModel.insertMany(products);
+
+  orderModel.insertMany(orders);
+});
+
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const existringUser = await userModel.findOne({ username });
